@@ -1,0 +1,69 @@
+
+import sys
+import math
+import itertools
+
+# Base of the number is assumed to be 10
+base = 10
+
+def convertListToInteger(num_list):
+    """Convert from a lsit of integer to one integer
+        for example [1,2,3,3] => 1233
+    """
+    num_string = ''.join(map(str, num_list))
+    return int(num_string)
+
+def validateArg(num):
+    """ Validate the input/arg"""
+    if (type(num) == str):
+        if (num.isdigit()):
+            num = int(num)
+        else:
+            return False
+    if (type(num) != int):
+        return False
+    elif (num < 0 ):
+        return False
+    else:
+        return True
+
+def checkArg():
+    """Check if there is an argument given from the command line"""
+    if len(sys.argv) < 2:
+
+        # ask user for the integer
+        print("There was no argument found")
+        num = input('Please input a number: ')
+        if validateArg(num):
+            return int(num)
+        else:
+            print('Exiting program: Incorrect input')
+            sys.exit()
+    else:
+        num = sys.argv[1]
+        if (validateArg(num)):
+            return int(num)
+        else:
+            print('Exiting program: Incorrect arg')
+            sys.exit()
+
+
+def findNumberofDigits(num):
+    """Find the number of digits in an integers"""
+    return (1 + math.floor(math.log(float(num)) / math.log(base)))
+
+num = checkArg()
+
+numOfDigits = findNumberofDigits(num)
+acc_sum = 0
+for lt_num_list in itertools.product([0,1],repeat=numOfDigits):
+    lt_num = convertListToInteger(lt_num_list)
+    if (lt_num < num):
+        acc_sum += lt_num
+    else:
+        break
+
+print("Sum: ", acc_sum)
+
+
+
