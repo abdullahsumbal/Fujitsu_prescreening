@@ -1,0 +1,7 @@
+Tell us about your greatest programming technical achievement. What was the challenge? What
+approach did you take? What was the result? What did you learn from this experience?
+
+I worked on creating a file system for a Unix system. The file system is capable of creating, writing, reading, seeking and deleting files in a directory.
+To complete this task, one should have deep understanding of how the Unix operating system works and how data is stored in a file.
+The approach was to start from something small like initializing the disk components including setting up the super block, I-nodes and memory.
+I did not test my code intensively and ran into problem later in the development. I learn the value of debugger and test driven development from this experience.
